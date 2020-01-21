@@ -22,7 +22,13 @@ class DatabaseSeeder extends Seeder
             'sessions',
         ]);
 
+        // Account Seeder
         $this->call(AuthTableSeeder::class);
+
+        // Options Seeder
+        $this->call(GroupTableSeeder::class);
+        $this->call(MonthTableSeeder::class);
+        $this->call(YearTableSeeder::class);
 
         Model::reguard();
     }

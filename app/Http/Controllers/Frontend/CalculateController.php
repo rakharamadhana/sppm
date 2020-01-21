@@ -15,21 +15,33 @@ class CalculateController extends Controller
     {
         $value = $request->input('value');
 
-        $iwb = $value * 0.015;
-        $iwpersonal = $value * 0.02;
-        $danataawun = $value * 0.005;
-        $zakatprofesi = $value * 0.025;
-        $total = $iwb + $iwpersonal + $danataawun + $zakatprofesi;
+        $result['iwb'] = $this->countIwb($value);
+        $result['iwpersonal'] = $this->countIwpersonal($value);;
+        $result['danataawun'] = $this->countDanaTaawun($value);
+        $result['zakatprofesi'] = $this->countZakatProfesi($value);
+        $result['total'] = $this->sumTotal($result['iwb'],$result['iwpersonal'],$result['danataawun'],$result['zakatprofesi']);
 
-        return view('frontend.index',
-            [
-                'value' => "Rp. ".number_format($value),
-                'iwb' => "Rp. ".number_format($iwb),
-                'iwpersonal' => "Rp. ".number_format($iwpersonal),
-                'danataawun' => "Rp. ".number_format($danataawun),
-                'zakatprofesi' => "Rp. ".number_format($zakatprofesi),
-                'total' => "Rp. ".number_format($total),
-            ]);
+        return view('frontend.index', ['value'=>$value, 'result' => $result]);
+    }
 
+    public function countIwb(float $amount) {
+        return $amount * 0.015;
+    }
+
+    public function countIwpersonal(float $amount) {
+        return $amount * 0.02;
+    }
+
+    public function countDanaTaawun(float $amount) {
+        return $amount * 0.005;
+    }
+
+    public function countZakatProfesi(float $amount) {
+        return $amount * 0.025;
+    }
+
+    private function sumTotal(float $a, float $b, float $c, float $d)
+    {
+        return $a + $b + $c + $d;
     }
 }

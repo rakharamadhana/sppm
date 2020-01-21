@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col">
             <div class="form-group">
-                {{ html()->label(__('validation.attributes.frontend.avatar'))->for('avatar') }}
+                {{ html()->label(__('Avatar'))->for('avatar') }}
 
                 <div>
                     <input type="radio" name="avatar_type" value="gravatar" {{ $logged_in_user->avatar_type == 'gravatar' ? 'checked' : '' }} /> Gravatar
@@ -27,7 +27,7 @@
     <div class="row">
         <div class="col">
             <div class="form-group">
-                {{ html()->label(__('validation.attributes.frontend.first_name'))->for('first_name') }}
+                {{ html()->label(__('Nama Depan'))->for('first_name') }}
 
                 {{ html()->text('first_name')
                     ->class('form-control')
@@ -42,7 +42,7 @@
     <div class="row">
         <div class="col">
             <div class="form-group">
-                {{ html()->label(__('validation.attributes.frontend.last_name'))->for('last_name') }}
+                {{ html()->label(__('Nama Belakang'))->for('last_name') }}
 
                 {{ html()->text('last_name')
                     ->class('form-control')
