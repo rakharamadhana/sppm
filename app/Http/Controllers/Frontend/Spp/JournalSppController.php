@@ -3,49 +3,87 @@
 namespace App\Http\Controllers\Frontend\Spp;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\Spp\JournalSppRequest;
 use App\Models\Options\Month;
 use App\Models\Options\Year;
-use App\Models\Spp\Journal;
+use App\Repositories\Frontend\Spp\JournalRepository;
+use Illuminate\Support\Facades\DB;
+use Datatables;
 
 /**
- * Class DashboardController.
+ * Class JournalSppController
+ * @package App\Http\Controllers\Frontend\Spp
  */
 class JournalSppController extends Controller
 {
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @var \Illuminate\Support\Collection
      */
-    public function index()
+    protected $years;
+
+    /**
+     * @var \Illuminate\Support\Collection
+     */
+    private $months;
+    /**
+     * @var array
+     */
+    private $status;
+
+    /**
+     * JournalSppController constructor.
+     */
+    public function __construct()
     {
-        $years = Year::all()->pluck('year', 'id');
+        $this->years = Year::all()->pluck('year','year');
 
-        $months = Month::all()->pluck('month', 'id');
+        $this->months = Month::all()->pluck('month','month');
 
-        $journals = Journal::query()->get();
-
-        $total = 0;
-
-        foreach ($journals as $value){
-            $total += $value->amount;
-        }
-
-        return view('frontend.user.spp.journal', ['years'=>$years, 'months'=>$months, 'journals'=>$journals, 'total'=>$total]);
+        $this->status = [
+            'Pending'=>'Pending',
+            'Accepted'=>'Diterima',
+            'Rejected'=>'Ditolak'
+        ];
     }
 
-    public function filter()
+    /**
+     * @param JournalRepository $journalRepository
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index(JournalRepository $journalRepository)
     {
-        $years = Year::all()->pluck('year', 'id');
 
-        $months = Month::all()->pluck('month', 'id');
+        $journals = $journalRepository->get();
 
-        $journals = Journal::query()->get();
+        return view('frontend.user.spp.journal',
+            [
+                'years'=>$this->years,
+                'months'=>$this->months,
+                'status'=>$this->status,
+                'journals'=>$journals
+            ]);
+    }
 
-        $total = 0;
+    /**
+     * @param JournalSppRequest $request
+     * @param JournalRepository $journalRepository
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function filter(JournalSppRequest $request, JournalRepository $journalRepository)
+    {
+        //dd($request->input());
 
-        foreach ($journals as $value){
-            $total += $value->amount;
-        }
+        $journals = $journalRepository->filter($request->input());
 
-        return view('frontend.user.spp.journal', ['years'=>$years, 'months'=>$months, 'journals'=>$journals, 'total'=>$total]);
+        //dd($journals);
+
+        return view('frontend.user.spp.journal',
+            [
+                'years'=>$this->years,
+                'months'=>$this->months,
+                'status'=>$this->status,
+                'journals'=>$journals
+
+            ]);
     }
 }

@@ -7,7 +7,10 @@ use App\Http\Requests\Frontend\Spp\StoreSppRequest;
 use App\Models\Options\Group;
 use App\Models\Options\Month;
 use App\Models\Options\Year;
-use App\Models\Spp\Journal;
+use App\Repositories\Frontend\Spp\JournalRepository;
+use phpDocumentor\Reflection\Types\Integer;
+use Illuminate\Http\Request;
+use function GuzzleHttp\Promise\all;
 
 /**
  * Class DashboardController.
@@ -33,8 +36,17 @@ class StoreSppController extends Controller
         return view('frontend.user.spp.store', ['years'=>$years, 'months'=>$months, 'groups'=>$groups, 'genders'=>$genders]);
     }
 
-    public function store(StoreSppRequest $request)
+    /**
+     * @param StoreSppRequest $request
+     * @param JournalRepository $journalRepository
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Throwable
+     */
+    public function store(StoreSppRequest $request, JournalRepository $journalRepository)
     {
+
+        //dump($request->file('receipt'));
+        //dd($request->file('form'));
 
         // Finding Group Code
         $groupName = $request->input('group');
@@ -42,30 +54,26 @@ class StoreSppController extends Controller
         $groupCode = $this->findGroupCode($groupName, $groupGender);
 
         // Send Data
-        $input['code'] = $groupCode;
-        $input['year'] = $request->input('year');
-        $input['month'] = $request->input('month');
-        $input['amount'] = $request->input('amount');
-        $input['receipt'] = $request->input('receipt');
-        $input['form'] = $request->input('form');
-        $input['status'] = 'Pending';
+        $journal['user_id'] = $request->session()->get('user_id');
+        $journal['user_name'] = $request->session()->get('user_name');
+        $journal['code'] = $groupCode;
+        $journal['year'] = $request->input('year');
+        $journal['month'] = $request->input('month');
+        $journal['amount'] = $request->input('amount');
+        $journal['receipt'] = $request->file('receipt');
+        $journal['form'] = $request->file('form');
 
-        $journal = new Journal;
-
-        $journal->code = $input['code'];
-        $journal->year = $input['year'];
-        $journal->month = $input['month'];
-        $journal->amount = $input['amount'];
-        $journal->receipt = $input['receipt'];
-        $journal->form = $input['form'];
-        $journal->status = $input['status'];
-
-        $journal->save();
+        $journalRepository->create($journal);
 
         return redirect('spp/journal');
     }
 
-    public function findGroupCode($groupName, $gender){
+    /**
+     * @param string $groupName
+     * @param string $gender
+     * @return mixed
+     */
+    public function findGroupCode(string $groupName, string $gender){
         return Group::select('code')
             ->where('gender', $gender)
             ->where('name', $groupName)

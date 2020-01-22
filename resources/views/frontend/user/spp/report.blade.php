@@ -13,7 +13,7 @@
                 </div><!--card-header-->
 
                 <div class="card-body">
-                    {{ html()->form('POST', route('frontend.calculate'))->open() }}
+                    {{ html()->form('POST', route('frontend.user.spp.report.filter'))->open() }}
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -46,7 +46,7 @@
             <div class="card">
                 <div class="card-header">
                     <strong>
-                        <i class="fas fa-tachometer-alt"></i> Rekap Setoran SPP
+                        <i class="fas fa-money-check"></i> Rekap Setoran SPP
                     </strong>
                 </div><!--card-header-->
 
@@ -54,36 +54,46 @@
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
-                            <tr class="table-primary">
-                                <th>Jenis</th>
-                                <th>Nominal</th>
-
+                            <tr class="table-secondary">
+                                <th>Bulan</th>
+                                <th>Jumlah Setoran</th>
+                                <th>Bukti Setoran</th>
+                                <th>Form Rekap</th>
+                                <th>Download Tanda Terima</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <h3>Total Penghasilan: {{ $value ?? '0' }}</h3>
-                            <tr>
-                                <th>IWB & IWDI</th>
-                                <td>{{ $iwb ?? '0' }}</td>
-
-                            </tr>
-                            <tr>
-                                <th>IW Personal</th>
-                                <td>{{ $iwpersonal ?? '0' }}</td>
-                            </tr>
-                            <tr>
-                                <th>Dana Ta'awun</th>
-                                <td>{{ $danataawun ?? '0' }}</td>
-                            </tr>
-                            <tr>
-                                <th>Zakat Profesi</th>
-                                <td>{{ $zakatprofesi ?? '0' }}</td>
-                            </tr>
-                            <tr class="table-success">
-                                <th>Total</th>
-                                <td>{{ $total ?? '0' }}</td>
-                            </tr>
+                            @foreach($months as $key => $month)
+                                <tr>
+                                    <td>{{ $month ?? 'Januari'}}</td>
+                                    <td>Rp. {{ number_format($journals[$month] ?? '0') }}</td>
+                                    <td>
+                                        <a href='#receipts' type="button" class="btn btn-warning badge">
+                                            <i class="fa fa-download"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href='#forms' type="button" class="btn btn-warning badge">
+                                            <i class="fa fa-download"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href='#invoices' type="button" class="btn btn-warning badge">
+                                            <i class="fa fa-download"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
+                            <tfoot>
+                            <tr class="table-success">
+                                <th>Total Setoran</th>
+                                <th>Rp. {{ number_format($total ?? 0) }}</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tfoot>
                         </table>
                     </div><!--table-responsive-->
                 </div><!--card-body-->

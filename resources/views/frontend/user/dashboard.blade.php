@@ -33,7 +33,7 @@
                                     <p class="card-text">
 
                                         <a href="{{ route('frontend.user.account')}}" class="btn btn-info btn-block mb-1">
-                                            <i class="fas fa-user-edit"></i> @lang('navs.frontend.user.account')
+                                            <i class="fas fa-user-edit"></i> Setting Akun
                                         </a>
 
                                         @can('view backend')

@@ -8,12 +8,12 @@
             <div class="card">
                 <div class="card-header">
                     <strong>
-                        <i class="fas fa-tachometer-alt"></i> Setoran SPP
+                        <i class="fas fa-money-bill"></i> Setoran SPP
                     </strong>
                 </div><!--card-header-->
 
                 <div class="card-body">
-                    {{ html()->form('POST', route('frontend.user.spp.store'))->open() }}
+                    {{ html()->form('POST', route('frontend.user.spp.store'))->attribute('enctype','multipart/form-data')->open() }}
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
@@ -94,9 +94,7 @@
                                 {{ html()->label(__('Bukti Pembayaran'))->for('receipt') }}
 
                                 {{ html()->input('file','receipt')
-                                    ->class('form-control')
-                                    ->placeholder(__('Pilih File'))
-                                    ->attribute('maxlength', 191) }}
+                                    ->class('form-control-file') }}
                             </div><!--form-group-->
                         </div><!--col-->
                     </div><!--row-->
@@ -107,9 +105,7 @@
                                 {{ html()->label(__('Form Rekap SPP'))->for('form') }}
 
                                 {{ html()->input('file','form')
-                                    ->class('form-control')
-                                    ->placeholder(__('Pilih File'))
-                                    ->attribute('maxlength', 191) }}
+                                    ->class('form-control-file') }}
                             </div><!--form-group-->
                         </div><!--col-->
                     </div><!--row-->

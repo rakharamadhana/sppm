@@ -43,8 +43,10 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
 
         // SPP Journal
         Route::get('spp/journal', [JournalSppController::class, 'index'])->name('spp.journal');
+        Route::post('spp/journal/filter', [JournalSppController::class, 'filter'])->name('spp.journal.filter');
 
         // SPP Report
         Route::get('spp/report', [ReportSppController::class, 'index'])->name('spp.report');
+        Route::post('spp/report/filter', [ReportSppController::class, 'filter'])->name('spp.report.filter');
     });
 });

@@ -33,6 +33,8 @@ class StoreSppRequest extends FormRequest
             'year' => 'required',
             'month' => 'required',
             'amount' => 'required',
+            'receipt' => 'nullable|file',
+            'form' => 'nullable|file',
         ];
     }
 
