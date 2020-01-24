@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <a href="{{ route('frontend.index') }}" class="navbar-brand">{{ app_name() }}</a>
 
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="@lang('labels.general.toggle_navigation')">
@@ -21,6 +21,7 @@
             @endauth
 
             @guest
+                <li class="nav-item"><a href="{{route('frontend.calculator')}}" class="nav-link {{ active_class(Route::is('frontend.calculator')) }}">Calculator</a></li>
                 <li class="nav-item"><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Route::is('frontend.auth.login')) }}">@lang('navs.frontend.login')</a></li>
 
                 @if(config('access.registration'))

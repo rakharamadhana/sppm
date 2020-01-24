@@ -21,6 +21,13 @@
         {{ style(mix('css/frontend.css')) }}
 
         @stack('after-styles')
+
+        <!-- Custom Style -->
+        <style>
+            body {
+                background-image: url("https://img.jakpost.net/c/2018/06/11/2018_06_11_47410_1528682809._large.jpg");
+            }
+        </style>
     </head>
     <body>
         @include('includes.partials.read-only')

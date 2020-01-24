@@ -8,6 +8,14 @@ use App\Http\Requests\Frontend\Calculator\CalculateRequest;
 class CalculateController extends Controller
 {
     /**
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        return view('frontend.calculator.calculator');
+    }
+
+    /**
      * @param CalculateRequest $request
      * @return mixed
      */

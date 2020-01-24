@@ -19,7 +19,8 @@ Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::post('contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 // SPP Calculator
-Route::post('calculate', [CalculateController::class, 'calculate'])->name('calculate');
+Route::get('calculator', [CalculateController::class, 'index'])->name('calculator');
+Route::post('calculator/calculate', [CalculateController::class, 'calculate'])->name('calculator.calculate');
 
 /*
  * These frontend controllers require the user to be logged in
