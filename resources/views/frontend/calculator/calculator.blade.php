@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('Zakat Calculator'))
+@section('title', app_name() . ' | ' . __('Kalkulator SPP'))
 
 @section('content')
     <div class="row mb-4">

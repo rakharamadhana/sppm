@@ -29,7 +29,7 @@ class CalculateController extends Controller
         $result['zakatprofesi'] = $this->countZakatProfesi($value);
         $result['total'] = $this->sumTotal($result['iwb'],$result['iwpersonal'],$result['danataawun'],$result['zakatprofesi']);
 
-        return view('frontend.index', ['value'=>$value, 'result' => $result]);
+        return view('frontend.calculator.calculator', ['value'=>$value, 'result' => $result]);
     }
 
     public function countIwb(float $amount) {
