@@ -25,19 +25,36 @@ class CalculateController extends Controller
     }
 
     public function countIwb(float $amount) {
-        return $amount * 0.015;
+        if($amount<1000000){
+            return 5000;
+        }else{
+            return $amount * 0.015;
+        }
     }
 
     public function countIwpersonal(float $amount) {
-        return $amount * 0.02;
+        if($amount<1000000){
+            return 0;
+        }else{
+            return $amount * 0.02;
+        }
     }
 
     public function countDanaTaawun(float $amount) {
-        return $amount * 0.005;
+        if($amount<1000000){
+            return 0;
+        }else{
+            return $amount * 0.005;
+        }
     }
 
     public function countZakatProfesi(float $amount) {
-        return $amount * 0.025;
+        if($amount>=6528000){
+            return $amount * 0.025;
+        }else{
+            return 0;
+        }
+
     }
 
     private function sumTotal(float $a, float $b, float $c, float $d)
