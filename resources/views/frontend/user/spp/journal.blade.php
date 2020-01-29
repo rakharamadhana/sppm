@@ -98,12 +98,12 @@
                                 <td>{{ $value->month }}</td>
                                 <td>Rp. {{ number_format($value->amount) }}</td>
                                 <td>
-                                    <a href='{{ Storage::url('spp/'.$value->year.'/'.$value->month.'/'.$value->receipt) }}' type="button" class="btn btn-warning badge">
+                                    <a href='{{ Storage::url('spp/'.$value->year.'/'.$value->month.'/'.$value->receipt) }}' type="button" class="btn btn-warning badge" download>
                                         <i class="fa fa-download"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href='{{ Storage::url('spp/'.$value->year.'/'.$value->month.'/'.$value->form) }}' type="button" class="btn btn-warning badge">
+                                    <a href='{{ Storage::url('spp/'.$value->year.'/'.$value->month.'/'.$value->form) }}' type="button" class="btn btn-warning badge" download>
                                         <i class="fa fa-download"></i>
                                     </a>
                                 </td>
