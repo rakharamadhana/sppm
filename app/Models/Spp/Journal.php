@@ -22,6 +22,7 @@ class Journal extends RecordingModel
      * @var array
      */
     protected $fillable = [
+        'user_id',
         'code',
         'year',
         'month',

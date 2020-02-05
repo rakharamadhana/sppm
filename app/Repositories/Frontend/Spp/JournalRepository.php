@@ -34,6 +34,7 @@ class JournalRepository extends BaseRepository
         $form = $this->upload($data, $data['form']);
 
         return $this->model::create([
+            'user_id' => $data['user_id'],
             'code' => $data['code'],
             'year' => $data['year'],
             'month' => $data['month'],
@@ -153,6 +154,14 @@ class JournalRepository extends BaseRepository
 
         /** @var array $query */
         //dd($journals);
+        return $journals;
+    }
+
+    public function getByUserId(int $user_id){
+        $journals = $this->model::query()
+            ->where('user_id', $user_id)
+            ->get();
+
         return $journals;
     }
 }

@@ -8,9 +8,6 @@ use App\Models\Options\Group;
 use App\Models\Options\Month;
 use App\Models\Options\Year;
 use App\Repositories\Frontend\Spp\JournalRepository;
-use phpDocumentor\Reflection\Types\Integer;
-use Illuminate\Http\Request;
-use function GuzzleHttp\Promise\all;
 
 /**
  * Class DashboardController.

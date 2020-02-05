@@ -7,8 +7,7 @@ use App\Http\Requests\Frontend\Spp\JournalSppRequest;
 use App\Models\Options\Month;
 use App\Models\Options\Year;
 use App\Repositories\Frontend\Spp\JournalRepository;
-use Illuminate\Support\Facades\DB;
-use Datatables;
+use Illuminate\Http\Request;
 
 /**
  * Class JournalSppController
@@ -48,12 +47,18 @@ class JournalSppController extends Controller
 
     /**
      * @param JournalRepository $journalRepository
+     * @param $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(JournalRepository $journalRepository)
+    public function index(Request $request, JournalRepository $journalRepository)
     {
+        $user_id = $request->session()->get('user_id');
 
-        $journals = $journalRepository->get();
+        if($user_id == 1){
+            $journals = $journalRepository->get();
+        }else{
+            $journals = $journalRepository->getByUserId($user_id);
+        }
 
         return view('frontend.user.spp.journal',
             [
