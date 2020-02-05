@@ -19,7 +19,7 @@
         </div><!-- box-header -->
 
         <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive-sm table-responsive-md table-responsive-lg">
                 <table class="table table-hover">
                     <thead>
                     <tr>

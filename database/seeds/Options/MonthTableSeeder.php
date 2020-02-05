@@ -4,7 +4,7 @@ use App\Models\Options\Month;
 use Illuminate\Database\Seeder;
 
 /**
- * Class UserTableSeeder.
+ * Class MonthTableSeeder
  */
 class MonthTableSeeder extends Seeder
 {

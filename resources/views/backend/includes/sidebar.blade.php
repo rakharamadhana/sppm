@@ -13,6 +13,26 @@
                 </a>
             </li>
 
+            <li class="nav-title">
+                SPP
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{
+                    active_class(Route::is('admin.spp.journal'))
+                }}" href="{{ route('admin.spp.journal') }}">
+                    <i class="nav-icon fas fa-list-alt"></i>
+                    Status Setoran
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{
+                    active_class(Route::is('admin.spp.report'))
+                }}" href="{{ route('admin.spp.report') }}">
+                    <i class="nav-icon fas fa-money-check"></i>
+                    Rekap Setoran
+                </a>
+            </li>
+
             @if ($logged_in_user->isAdmin())
                 <li class="nav-title">
                     @lang('menus.backend.sidebar.system')

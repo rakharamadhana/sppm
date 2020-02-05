@@ -53,7 +53,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive-sm table-responsive-md table-responsive-lg">
                     <table class="table table-condensed">
                         <thead>
                             <tr>

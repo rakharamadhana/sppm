@@ -168,6 +168,8 @@ return [
                 ],
 
                 'users' => [
+                    'first_name' => 'Nama Depan',
+                    'last_name' => 'Nama Belakang',
                     'active' => 'Aktif',
                     'associated_roles' => 'Asosiasi Peran',
                     'confirmed' => 'Dikonfirmasi',

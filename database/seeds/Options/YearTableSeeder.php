@@ -4,7 +4,7 @@ use App\Models\Options\Year;
 use Illuminate\Database\Seeder;
 
 /**
- * Class UserTableSeeder.
+ * Class YearTableSeeder
  */
 class YearTableSeeder extends Seeder
 {

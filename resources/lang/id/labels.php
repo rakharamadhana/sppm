@@ -27,6 +27,7 @@ return [
         'inactive' => 'Non-aktif',
         'none' => 'Tidak ada',
         'show' => 'Tunjukkan',
+        'more' => 'Lainnya',
         'toggle_navigation' => 'Alihkan Navigasi',
     ],
 
@@ -56,11 +57,14 @@ return [
                 'deleted' => 'Pengguna Dihapus',
                 'edit' => 'Edit Pengguna',
                 'management' => 'Manajemen Pengguna',
+
                 'no_permissions' => 'Tidak Ada Izin',
                 'no_roles' => 'Tidak Ada Peran untuk Ditetapkan.',
                 'permissions' => 'Izin',
 
                 'table' => [
+                    'first_name' => 'Nama Depan',
+                    'last_name' => 'Nama Belakang',
                     'confirmed' => 'Dikonfirmasi',
                     'created' => 'Dibuat',
                     'email' => 'E-mail',
@@ -70,6 +74,8 @@ return [
                     'no_deactivated' => 'Tidak Ada Pengguna Dinonaktifkan',
                     'no_deleted' => 'Tidak Ada Pengguna Dihapus',
                     'roles' => 'Peran',
+                    'other_permissions' => 'Izin Lainnya',
+                    'permissions' => 'Izin',
                     'social' => 'Social',
                     'total' => 'total pengguna|total pengguna',
                 ],
