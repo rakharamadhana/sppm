@@ -78,7 +78,13 @@ class JournalSppController extends Controller
     {
         //dd($request->input());
 
-        $journals = $journalRepository->filter($request->input());
+        $user_id = $request->session()->get('user_id');
+
+        if($user_id == 1){
+            $journals = $journalRepository->filter($request->input());
+        }else{
+            $journals = $journalRepository->filterWithUserId($request->input(), $user_id);
+        }
 
         //dd($journals);
 

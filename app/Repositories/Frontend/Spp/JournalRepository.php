@@ -172,6 +172,35 @@ class JournalRepository extends BaseRepository
         return $journals;
     }
 
+    /**
+     * @param array $request
+     * @param int $user_id
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|mixed[]
+     */
+    public function filterWithUserId(array $request, int $user_id)
+    {
+        $month = $request['month'];
+        $year = $request['year'];
+        $status = $request['status'];
+
+        $journals = $this->model::query()
+            ->where('user_id', $user_id)
+            ->when($month, function ($query, $month) {
+                return $query->where('month', $month);
+            })
+            ->when($year, function ($query, $year) {
+                return $query->where('year', $year);
+            })
+            ->when($status, function ($query, $status) {
+                return $query->where('status', $status);
+            })
+            ->get();
+
+        /** @var array $query */
+        //dd($journals);
+        return $journals;
+    }
+
     public function getByUserId(int $user_id){
         $journals = $this->model::query()
             ->where('user_id', $user_id)
