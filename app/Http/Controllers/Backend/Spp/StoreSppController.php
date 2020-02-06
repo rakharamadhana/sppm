@@ -43,7 +43,7 @@ class StoreSppController extends Controller
     {
 
         //dump($request->file('receipt'));
-        //dd($request->file('form'));
+        dd($request->all());
 
         // Finding Group Code
         $groupName = $request->input('group');

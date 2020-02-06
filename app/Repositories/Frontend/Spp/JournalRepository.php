@@ -30,6 +30,7 @@ class JournalRepository extends BaseRepository
      */
     public function create(array $data)
     {
+        //dd($data);
         $receipt = $this->upload($data, $data['receipt']);
         $form = $this->upload($data, $data['form']);
 

@@ -64,7 +64,7 @@
                             <div class="form-group">
                                 {{ html()->label(__('Bulan Pembayaran'))->for('group') }}
 
-                                {{ html()->select('group')
+                                {{ html()->select('month')
                                     ->options($months)
                                     ->class('form-control')
                                     ->placeholder(__('Pilih Bulan Pembayaran'))
