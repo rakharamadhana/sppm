@@ -16,26 +16,72 @@
             <li class="nav-title">
                 SPP
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{
-                    active_class(Route::is('admin.spp.journal'))
-                }}" href="{{ route('admin.spp.journal') }}">
-                    <i class="nav-icon fas fa-list-alt"></i>
-                    Status Setoran
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{
-                    active_class(Route::is('admin.spp.report'))
-                }}" href="{{ route('admin.spp.report') }}">
+            <li class="nav-item nav-dropdown {{
+                    active_class(Route::is('admin/auth*'), 'open')
+                }}">
+                <a class="nav-link nav-dropdown-toggle {{
+                        active_class(Route::is('admin/auth*'))
+                    }}" href="#">
                     <i class="nav-icon fas fa-money-check"></i>
-                    Rekap Setoran
+                    Setoran
                 </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                                active_class(Route::is('admin.spp.journal'))
+                            }}" href="{{ route('admin.spp.journal') }}">
+                            Status
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{
+                            active_class(Route::is('admin.spp.report'))
+                        }}" href="{{ route('admin.spp.report') }}">
+                            Rekapitulasi
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             @if ($logged_in_user->isAdmin())
                 <li class="nav-title">
-                    @lang('menus.backend.sidebar.system')
+                    Manajemen
+                </li>
+
+                <li class="nav-item nav-dropdown {{
+                    active_class(Route::is('admin/options*'), 'open')
+                }}">
+                    <a class="nav-link nav-dropdown-toggle {{
+                        active_class(Route::is('admin/options*'))
+                    }}" href="#">
+                        <i class="nav-icon fas fa-list"></i>
+                        Manajemen Opsi
+                    </a>
+
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Route::is('admin/options/group*'))
+                            }}" href="{{ route('admin.options.group') }}">
+                                List Grup
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Route::is('admin/options/month*'))
+                            }}" href="{{ route('admin.options.month') }}">
+                                List Bulan
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Route::is('admin/options/year*'))
+                            }}" href="{{ route('admin.options.year') }}">
+                                List Tahun
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item nav-dropdown {{
@@ -57,7 +103,7 @@
                             <a class="nav-link {{
                                 active_class(Route::is('admin/auth/user*'))
                             }}" href="{{ route('admin.auth.user.index') }}">
-                                @lang('labels.backend.access.users.management')
+                                List Pengguna
 
                                 @if ($pending_approval > 0)
                                     <span class="badge badge-danger">{{ $pending_approval }}</span>
@@ -68,13 +114,15 @@
                             <a class="nav-link {{
                                 active_class(Route::is('admin/auth/role*'))
                             }}" href="{{ route('admin.auth.role.index') }}">
-                                @lang('labels.backend.access.roles.management')
+                                List Peran
                             </a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="divider"></li>
+                <li class="nav-title">
+                    @lang('menus.backend.sidebar.system')
+                </li>
 
                 <li class="nav-item nav-dropdown {{
                     active_class(Route::is('admin/log-viewer*'), 'open')
@@ -82,7 +130,7 @@
                         <a class="nav-link nav-dropdown-toggle {{
                             active_class(Route::is('admin/log-viewer*'))
                         }}" href="#">
-                        <i class="nav-icon fas fa-list"></i> @lang('menus.backend.log-viewer.main')
+                        <i class="nav-icon fas fa-sticky-note"></i> @lang('menus.backend.log-viewer.main')
                     </a>
 
                     <ul class="nav-dropdown-items">

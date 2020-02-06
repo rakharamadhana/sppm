@@ -87,6 +87,20 @@ class JournalRepository extends BaseRepository
     }
 
     /**
+     * @param $id
+     * @param string $status
+     * @return bool
+     */
+    public function updateStatus($id, string $status)
+    {
+        $journal = $this->getById($id);
+        $journal->status = $status;
+
+        //dd($journal);
+        return $journal->save();
+    }
+
+    /**
      * @param array $meta
      * @param $file
      * @return string|string

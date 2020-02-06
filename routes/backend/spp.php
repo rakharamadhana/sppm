@@ -1,6 +1,5 @@
 <?php
 
-// All route names are prefixed with 'admin.auth'.
 use App\Http\Controllers\Backend\Spp\JournalSppController;
 use App\Http\Controllers\Backend\Spp\ReportSppController;
 
@@ -15,6 +14,11 @@ Route::group([
         // Spp Journal
         Route::get('journal', [JournalSppController::class, 'index'])->name('journal');
         Route::post('journal', [JournalSppController::class, 'filter'])->name('journal.filter');
+
+        // Spp Update Status
+        Route::get('{id}/pending', [JournalSppController::class, 'pending'])->name('pending');
+        Route::get('{id}/accept', [JournalSppController::class, 'accept'])->name('accept');
+        Route::get('{id}/reject', [JournalSppController::class, 'reject'])->name('reject');
 
         // Spp Report
         Route::get('report', [ReportSppController::class, 'index'])->name('report');

@@ -13,7 +13,7 @@
 
     <ul class="nav navbar-nav d-md-down-none">
         <li class="nav-item px-3">
-            <a class="nav-link" href="{{ route('admin.dashboard') }}">@lang('navs.frontend.dashboard')</a>
+            <a class="nav-link" href="{{ route('admin.dashboard') }}"><i class="fas fa-home"></i></a>
         </li>
 
         @if(config('locale.status') && count(config('locale.languages')) > 1)
@@ -29,9 +29,28 @@
 
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item d-md-down-none">
-            <a class="nav-link" href="#">
+            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell"></i>
+
+                <span class="badge badge-warning">5</span>
+{{--                @if ($pending_approval > 0)--}}
+
+{{--                @endif--}}
             </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-header text-center">
+                    <strong>Notifikasi</strong>
+                </div>
+                <a class="dropdown-item" href="{{ route('admin.spp.journal') }}">
+                    <i class="fas fa-spinner"></i> Pending <span class="badge badge-primary">5</span>
+                </a>
+                <a class="dropdown-item" href="{{ route('admin.spp.journal') }}">
+                    <i class="fas fa-check"></i> Accepted <span class="badge badge-success">1</span>
+                </a>
+                <a class="dropdown-item" href="{{ route('admin.spp.journal') }}">
+                    <i class="fas fa-times"></i> Rejected <span class="badge badge-danger">0</span>
+                </a>
+            </div>
         </li>
         <li class="nav-item dropdown mr-4">
           <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -40,7 +59,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right">
             <div class="dropdown-header text-center">
-              <strong>Account</strong>
+              <strong>Akun</strong>
             </div>
             <a class="dropdown-item" href="{{ route('frontend.auth.logout') }}">
                 <i class="fas fa-lock"></i> @lang('navs.general.logout')

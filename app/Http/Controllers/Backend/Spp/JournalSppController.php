@@ -90,4 +90,40 @@ class JournalSppController extends Controller
                 'journals'=>$journals
             ]);
     }
+
+    /**
+     * @param $id
+     * @param JournalRepository $journalRepository
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function pending($id, JournalRepository $journalRepository)
+    {
+        $journalRepository->updateStatus($id, 'Pending');
+
+        return redirect(route('admin.spp.journal'));
+    }
+
+    /**
+     * @param $id
+     * @param JournalRepository $journalRepository
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function accept($id, JournalRepository $journalRepository)
+    {
+        $journalRepository->updateStatus($id, 'Accepted');
+
+        return redirect(route('admin.spp.journal'));
+    }
+
+    /**
+     * @param $id
+     * @param JournalRepository $journalRepository
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function reject($id, JournalRepository $journalRepository)
+    {
+        $journalRepository->updateStatus($id, 'Rejected');
+
+        return redirect(route('admin.spp.journal'));
+    }
 }

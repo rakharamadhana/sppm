@@ -63,10 +63,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($months as $key => $month)
+                            @foreach($months as $key => $group)
                                 <tr>
-                                    <td>{{ $month ?? 'Januari'}}</td>
-                                    <td>Rp. {{ number_format($journals[$month] ?? '0') }}</td>
+                                    <td>{{ $group ?? 'Januari'}}</td>
+                                    <td>Rp. {{ number_format($journals[$group] ?? '0') }}</td>
                                     <td>
                                         <a href='#receipts' type="button" class="btn btn-warning badge">
                                             <i class="fa fa-download"></i>

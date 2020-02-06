@@ -21,7 +21,7 @@
             @endauth
 
             @guest
-                <li class="nav-item"><a href="{{route('frontend.calculator')}}" class="nav-link {{ active_class(Route::is('frontend.calculator')) }}">Calculator</a></li>
+                <li class="nav-item"><a href="{{route('frontend.calculator')}}" class="nav-link {{ active_class(Route::is('frontend.calculator')) }}">Kalkulator</a></li>
                 <li class="nav-item"><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Route::is('frontend.auth.login')) }}">@lang('navs.frontend.login')</a></li>
 
                 @if(config('access.registration'))

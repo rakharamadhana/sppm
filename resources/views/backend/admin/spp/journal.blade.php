@@ -17,9 +17,9 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                {{ html()->label(__('Bulan'))->for('month') }}
+                                {{ html()->label(__('Bulan'))->for('group') }}
 
-                                {{ html()->select('month')
+                                {{ html()->select('group')
                                     ->options($months)
                                     ->class('form-control')
                                     ->placeholder(__('Pilih Bulan'))
@@ -78,6 +78,7 @@
                         <table class="table">
                             <thead>
                             <tr class="table-secondary">
+                                <th>User ID</th>
                                 <th>Waktu Input</th>
                                 <th>Kode</th>
                                 <th>Tahun</th>
@@ -86,25 +87,25 @@
                                 <th>Bukti Setoran SPP</th>
                                 <th>Form SPP</th>
                                 <th>Status</th>
-                                <th>Invoice</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($journals as $key => $value)
                             <tr>
+                                <td>{{ $value->user_id }}</td>
                                 <td>{{ $value->created_at }}</td>
                                 <td>{{ $value->code }}</td>
                                 <td>{{ $value->year }}</td>
                                 <td>{{ $value->month }}</td>
                                 <td>Rp. {{ number_format($value->amount) }}</td>
                                 <td>
-                                    <a href='{{ Storage::url('spp/'.$value->year.'/'.$value->month.'/'.$value->receipt) }}' type="button" class="btn btn-warning badge" download>
+                                    <a href='{{ Storage::url('spp/'.$value->year.'/'.$value->group.'/'.$value->receipt) }}' type="button" class="btn btn-warning badge" download>
                                         <i class="fa fa-download"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href='{{ Storage::url('spp/'.$value->year.'/'.$value->month.'/'.$value->form) }}' type="button" class="btn btn-warning badge" download>
+                                    <a href='{{ Storage::url('spp/'.$value->year.'/'.$value->group.'/'.$value->form) }}' type="button" class="btn btn-warning badge" download>
                                         <i class="fa fa-download"></i>
                                     </a>
                                 </td>
@@ -115,30 +116,19 @@
                                 @elseif ($value->status === 'Rejected')
                                     <td><span class="badge badge-danger">{{ $value->status }} <i class="fa fa-times"></i></span></td>
                                 @endif
-                                @if ($value->status === 'Pending')
-                                    <td></td>
-                                @elseif ($value->status === 'Accepted')
-                                    <td>
-                                        <a href='#invoice' type="button" class="btn btn-warning badge">
-                                            <i class="fa fa-download"></i>
-                                        </a>
-                                    </td>
-                                @elseif ($value->status === 'Rejected')
-                                    <td></td>
-                                @endif
                                 <td>
-                                    <a class="btn btn-primary badge" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <a class="btn btn-primary" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item bg-primary text-black-50" href="#">
-                                            <i class="fas fa-spinner"></i> Pending
+                                        <a class="dropdown-item bg-primary" href="{{ $value->id }}/pending">
+                                            <i class="fas fa-spinner text-white"></i> Pending
                                         </a>
-                                        <a class="dropdown-item bg-success text-black-50" href="#">
-                                            <i class="fas fa-check"></i> Accepted
+                                        <a class="dropdown-item bg-success" href="{{ $value->id }}/accept">
+                                            <i class="fas fa-check text-white"></i> Accept
                                         </a>
-                                        <a class="dropdown-item bg-danger text-black-50" href="#">
-                                            <i class="fas fa-times"></i> Rejected
+                                        <a class="dropdown-item bg-danger" href="{{ $value->id }}/reject">
+                                            <i class="fas fa-times text-white"></i> Reject
                                         </a>
                                     </div>
                                 </td>
