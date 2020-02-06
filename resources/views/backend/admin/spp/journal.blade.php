@@ -19,7 +19,7 @@
                             <div class="form-group">
                                 {{ html()->label(__('Bulan'))->for('group') }}
 
-                                {{ html()->select('group')
+                                {{ html()->select('month')
                                     ->options($months)
                                     ->class('form-control')
                                     ->placeholder(__('Pilih Bulan'))
