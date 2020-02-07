@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Backend\Spp;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Frontend\Spp\StoreSppRequest;
+use App\Http\Requests\Spp\StoreSppRequest;
 use App\Models\Options\Group;
 use App\Models\Options\Month;
 use App\Models\Options\Year;
-use App\Repositories\Frontend\Spp\JournalRepository;
+use App\Repositories\Spp\JournalRepository;
 
 /**
  * Class DashboardController.

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Frontend\Spp;
+namespace App\Repositories\Spp;
 
 use App\Exceptions\GeneralException;
 use App\Models\Options\Month;
@@ -132,6 +132,34 @@ class JournalRepository extends BaseRepository
             // Mengambil sums amount tiap bulan
             $journal[$month] = Journal::select(DB::raw('sum(amount) as total'))
                 ->groupBy('month')
+                ->where('status','Accepted')
+                ->where('month',$month)
+                ->where('year',$year)
+                ->pluck('total')
+                ->first();
+
+
+        }
+
+        /** @var array $journal */
+        return $journal;
+    }
+
+    /**
+     * @param int $id
+     * @param string $year
+     * @return array
+     */
+    public function sumTotalEachMonthWithUserId(int $id, string $year){
+
+        $months = Month::all()->pluck('month','id');
+
+        foreach($months as $keyMonth => $month){
+
+            // Mengambil sums amount tiap bulan
+            $journal[$month] = Journal::select(DB::raw('sum(amount) as total'))
+                ->groupBy('month')
+                ->where('user_id',$id)
                 ->where('status','Accepted')
                 ->where('month',$month)
                 ->where('year',$year)

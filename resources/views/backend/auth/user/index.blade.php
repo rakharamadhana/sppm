@@ -27,13 +27,13 @@
                     <table class="table">
                         <thead>
                         <tr>
+                            <th>User ID</th>
                             <th>@lang('labels.backend.access.users.table.last_name')</th>
                             <th>@lang('labels.backend.access.users.table.first_name')</th>
                             <th>@lang('labels.backend.access.users.table.email')</th>
                             <th>@lang('labels.backend.access.users.table.confirmed')</th>
                             <th>@lang('labels.backend.access.users.table.roles')</th>
                             <th>@lang('labels.backend.access.users.table.other_permissions')</th>
-                            <th>@lang('labels.backend.access.users.table.social')</th>
                             <th>@lang('labels.backend.access.users.table.last_updated')</th>
                             <th>@lang('labels.general.actions')</th>
                         </tr>
@@ -41,13 +41,13 @@
                         <tbody>
                         @foreach($users as $user)
                             <tr>
+                                <td>{{ $user->id }}</td>
                                 <td>{{ $user->last_name }}</td>
                                 <td>{{ $user->first_name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>@include('backend.auth.user.includes.confirm', ['user' => $user])</td>
                                 <td>{{ $user->roles_label }}</td>
                                 <td>{{ $user->permissions_label }}</td>
-                                <td>@include('backend.auth.user.includes.social-buttons', ['user' => $user])</td>
                                 <td>{{ $user->updated_at->diffForHumans() }}</td>
                                 <td class="btn-td">@include('backend.auth.user.includes.actions', ['user' => $user])</td>
                             </tr>

@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Backend\Spp;
 use App\Http\Controllers\Controller;
 use App\Models\Options\Month;
 use App\Models\Options\Year;
-use App\Http\Requests\Frontend\Spp\ReportSppRequest;
+use App\Http\Requests\Spp\ReportSppRequest;
 use App\Models\Spp\Journal;
-use App\Repositories\Frontend\Spp\JournalRepository;
+use App\Repositories\Spp\JournalRepository;
 
 /**
  * Class ReportSppController

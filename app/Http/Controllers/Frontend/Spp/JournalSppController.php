@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Frontend\Spp;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Frontend\Spp\JournalSppRequest;
+use App\Http\Requests\Spp\JournalSppRequest;
 use App\Models\Options\Month;
 use App\Models\Options\Year;
-use App\Repositories\Frontend\Spp\JournalRepository;
+use App\Repositories\Spp\JournalRepository;
 use Illuminate\Http\Request;
 
 /**

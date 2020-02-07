@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Frontend\Spp;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Spp\ReportSppRequest;
 use App\Models\Options\Month;
 use App\Models\Options\Year;
-use App\Http\Requests\Frontend\Spp\ReportSppRequest;
 use App\Models\Spp\Journal;
-use App\Repositories\Frontend\Spp\JournalRepository;
+use App\Repositories\Spp\JournalRepository;
+use Illuminate\Http\Request;
 
 /**
  * Class ReportSppController
@@ -36,16 +37,23 @@ class ReportSppController extends Controller
     }
 
     /**
+     * @param Request $request
      * @param JournalRepository $journalRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(JournalRepository $journalRepository)
+    public function index(Request $request, JournalRepository $journalRepository)
     {
         $years = $this->years;
 
         $months = $this->months;
 
-        $journals = $journalRepository->sumTotalEachMonth(date('Y'));
+        $user_id = $request->session()->get('user_id');
+
+        if($user_id == 1){
+            $journals = $journalRepository->sumTotalEachMonth(date('Y'));
+        }else{
+            $journals = $journalRepository->sumTotalEachMonthWithUserId($user_id, date('Y'));
+        }
 
         $total = array_sum($journals);
 
@@ -66,7 +74,13 @@ class ReportSppController extends Controller
 
         $yearFilter = $request->input('year');
 
-        $journals = $journalRepository->sumTotalEachMonth($yearFilter);
+        $user_id = $request->session()->get('user_id');
+
+        if($user_id == 1){
+            $journals = $journalRepository->sumTotalEachMonth($yearFilter);
+        }else{
+            $journals = $journalRepository->sumTotalEachMonthWithUserId($user_id, $yearFilter);
+        }
 
         $total = array_sum($journals);
 

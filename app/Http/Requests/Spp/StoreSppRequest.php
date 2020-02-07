@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Frontend\Spp;
+namespace App\Http\Requests\Spp;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * Class CalculateRequest
  * @package App\Http\Requests\Frontend\Contact
  */
-class JournalSppRequest extends FormRequest
+class StoreSppRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,10 +28,13 @@ class JournalSppRequest extends FormRequest
     public function rules()
     {
         return [
-            'year' => 'string|nullable',
-            'month' => 'string|nullable',
-            'status' => 'string|nullable',
-
+            'gender' => 'required',
+            'group' => 'required',
+            'year' => 'required',
+            'month' => 'required',
+            'amount' => 'required',
+            'receipt' => 'required|file',
+            'form' => 'required|file',
         ];
     }
 

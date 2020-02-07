@@ -100,12 +100,12 @@
                                 <td>{{ $value->month }}</td>
                                 <td>Rp. {{ number_format($value->amount) }}</td>
                                 <td>
-                                    <a href='{{ Storage::url('spp/'.$value->year.'/'.$value->group.'/'.$value->receipt) }}' type="button" class="btn btn-warning badge" download>
+                                    <a href='{{ Storage::url('spp/'.$value->year.'/'.$value->month.'/'.$value->receipt) }}' type="button" class="btn btn-warning badge" download>
                                         <i class="fa fa-download"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href='{{ Storage::url('spp/'.$value->year.'/'.$value->group.'/'.$value->form) }}' type="button" class="btn btn-warning badge" download>
+                                    <a href='{{ Storage::url('spp/'.$value->year.'/'.$value->month.'/'.$value->form) }}' type="button" class="btn btn-warning badge" download>
                                         <i class="fa fa-download"></i>
                                     </a>
                                 </td>
@@ -117,19 +117,21 @@
                                     <td><span class="badge badge-danger">{{ $value->status }} <i class="fa fa-times"></i></span></td>
                                 @endif
                                 <td>
-                                    <a class="btn btn-primary" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item bg-primary" href="{{ $value->id }}/pending">
-                                            <i class="fas fa-spinner text-white"></i> Pending
-                                        </a>
-                                        <a class="dropdown-item bg-success" href="{{ $value->id }}/accept">
-                                            <i class="fas fa-check text-white"></i> Accept
-                                        </a>
-                                        <a class="dropdown-item bg-danger" href="{{ $value->id }}/reject">
-                                            <i class="fas fa-times text-white"></i> Reject
-                                        </a>
+                                    <div class="btn-group btn-group" role="group">
+                                        <button id="journalActions" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="journalActions">
+                                            <a class="dropdown-item bg-primary" href="{{ $value->id }}/pending">
+                                                <i class="fas fa-spinner text-white"></i> Pending
+                                            </a>
+                                            <a class="dropdown-item bg-success" href="{{ $value->id }}/accept">
+                                                <i class="fas fa-check text-white"></i> Accept
+                                            </a>
+                                            <a class="dropdown-item bg-danger" href="{{ $value->id }}/reject">
+                                                <i class="fas fa-times text-white"></i> Reject
+                                            </a>
+                                        </div>
                                     </div>
                                 </td>
 

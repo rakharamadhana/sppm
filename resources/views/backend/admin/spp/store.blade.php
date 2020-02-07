@@ -94,7 +94,8 @@
                                 {{ html()->label(__('Bukti Pembayaran'))->for('receipt') }}
 
                                 {{ html()->input('file','receipt')
-                                    ->class('form-control-file') }}
+                                    ->class('form-control-file')
+                                    ->required() }}
                             </div><!--form-group-->
                         </div><!--col-->
                     </div><!--row-->
@@ -105,7 +106,8 @@
                                 {{ html()->label(__('Form Rekap SPP'))->for('form') }}
 
                                 {{ html()->input('file','form')
-                                    ->class('form-control-file') }}
+                                    ->class('form-control-file')
+                                     ->required() }}
                             </div><!--form-group-->
                         </div><!--col-->
                     </div><!--row-->
