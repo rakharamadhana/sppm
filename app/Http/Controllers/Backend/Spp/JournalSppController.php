@@ -46,19 +46,14 @@ class JournalSppController extends Controller
     }
 
     /**
+     * @param Request $request
      * @param JournalRepository $journalRepository
-     * @param $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Request $request, JournalRepository $journalRepository)
+    public function index(JournalRepository $journalRepository)
     {
-        $user_id = $request->session()->get('user_id');
 
-        if($user_id == 1){
-            $journals = $journalRepository->get();
-        }else{
-            $journals = $journalRepository->getByUserId($user_id);
-        }
+        $journals = $journalRepository->get();
 
         return view('backend.admin.spp.journal',
             [
@@ -76,17 +71,8 @@ class JournalSppController extends Controller
      */
     public function filter(JournalSppRequest $request, JournalRepository $journalRepository)
     {
-        //dd($request->input());
 
-        $user_id = $request->session()->get('user_id');
-
-        if($user_id == 1){
-            $journals = $journalRepository->filter($request->input());
-        }else{
-            $journals = $journalRepository->filterWithUserId($request->input(), $user_id);
-        }
-
-        //dd($journals);
+        $journals = $journalRepository->filter($request->input());
 
         return view('backend.admin.spp.journal',
             [

@@ -68,7 +68,7 @@
                                     <td>{{ $month ?? 'Januari'}}</td>
                                     <td>Rp. {{ number_format($journals[$month] ?? '0') }}</td>
                                     <td>
-                                        <a href='#receipts' type="button" class="btn btn-warning badge">
+                                        <a href='report/download/{{ date('Y') }}/{{ $month }}' type="button" class="btn btn-warning badge">
                                             <i class="fa fa-download"></i>
                                         </a>
                                     </td>

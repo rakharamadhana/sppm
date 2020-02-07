@@ -49,5 +49,6 @@ Route::group(['middleware' => ['auth', 'password_expires']], function () {
         // SPP Report
         Route::get('spp/report', [ReportSppController::class, 'index'])->name('spp.report');
         Route::post('spp/report/filter', [ReportSppController::class, 'filter'])->name('spp.report.filter');
+        Route::get('spp/report/download/{year}/{month}', [ReportSppController::class, 'downloadReceipts'])->name('spp.report.download');
     });
 });

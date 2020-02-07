@@ -9,6 +9,8 @@ use App\Models\Options\Year;
 use App\Models\Spp\Journal;
 use App\Repositories\Spp\JournalRepository;
 use Illuminate\Http\Request;
+use Storage;
+use ZipArchive;
 
 /**
  * Class ReportSppController
@@ -91,5 +93,42 @@ class ReportSppController extends Controller
                 'journals'=>$journals,
                 'total'=>$total
             ]);
+    }
+
+    /**
+     * @param string $year
+     * @param string $month
+     * @return int|\Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function downloadReceipts(string $year, string $month){
+        $journals = Journal::query()
+            ->where('year', $year)
+            ->where('month', $month)
+            ->get();
+
+        Storage::disk('public')->makeDirectory('zips');
+
+        $storage_dir = storage_path('zips');
+
+        $zipFileName = 'Receipts.zip';
+
+        $zip = new \ZipArchive();
+        //dd($public_dir);
+        $zip->open($storage_dir . '/' . $zipFileName, ZipArchive::CREATE);
+
+        foreach ($journals as $journal){
+            $zip->addFile(storage_path('app/public/spp/'.$year.'/'.$month.'/'.$journal->receipt), $journal->receipt);
+        }
+
+        $zip->close();
+
+        // Set Header
+        $headers = array(
+            'Content-Type' => 'application/octet-stream',
+        );
+
+        $fileToPath = $storage_dir.'/'.$zipFileName;
+
+        return response()->download($fileToPath,$zipFileName,$headers);
     }
 }
