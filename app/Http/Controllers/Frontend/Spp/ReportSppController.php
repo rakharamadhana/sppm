@@ -106,18 +106,20 @@ class ReportSppController extends Controller
             ->where('month', $month)
             ->get();
 
-        Storage::disk('public')->makeDirectory('zips');
+        //Storage::disk('public')->makeDirectory('temp');
 
-        $storage_dir = storage_path('zips');
+        $storage_dir = storage_path('temp');
 
-        $zipFileName = 'Receipts.zip';
+        $zipFileName = $year.'_'.$month.'_receipts'.'.temp';
 
         $zip = new \ZipArchive();
         //dd($public_dir);
         $zip->open($storage_dir . '/' . $zipFileName, ZipArchive::CREATE);
 
         foreach ($journals as $journal){
-            $zip->addFile(storage_path('app/public/spp/'.$year.'/'.$month.'/'.$journal->receipt), $journal->receipt);
+            $file = storage_path('app/public/spp/'.$year.'/'.$month.'/'.$journal->receipt);
+            $fileRename = $journal->receipt;
+            $zip->addFile($file, $fileRename);
         }
 
         $zip->close();
