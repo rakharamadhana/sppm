@@ -52,7 +52,7 @@ class CalculateController extends Controller
         if($amount<1000000){
             return 0;
         }else{
-            return $amount * 0.005;
+            return $amount * 0.005; // There is a change
         }
     }
 
