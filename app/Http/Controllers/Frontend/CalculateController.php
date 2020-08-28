@@ -7,6 +7,8 @@ use App\Http\Requests\Frontend\Calculator\CalculateRequest;
 
 class CalculateController extends Controller
 {
+    public $nishab = 7000000;
+
     /**
      * @return \Illuminate\View\View
      */
@@ -33,31 +35,31 @@ class CalculateController extends Controller
     }
 
     public function countIwb(float $amount) {
-        if($amount<1000000){
-            return 5000;
-        }else{
+        if($amount>3000000){
             return $amount * 0.015;
+        }else{
+            return 15000;
         }
     }
 
     public function countIwpersonal(float $amount) {
-        if($amount<1000000){
-            return 0;
-        }else{
+        if($amount>3000000){
             return $amount * 0.02;
+        }else{
+            return 0;
         }
     }
 
     public function countDanaTaawun(float $amount) {
-        if($amount<1000000){
-            return 0;
+        if($amount>3000000){
+            return $amount * 0.005; //
         }else{
-            return $amount * 0.005; // There is a change
+            return 0;
         }
     }
 
     public function countZakatProfesi(float $amount) {
-        if($amount>=6528000){
+        if($amount>=$this->nishab){
             return $amount * 0.025;
         }else{
             return 0;
