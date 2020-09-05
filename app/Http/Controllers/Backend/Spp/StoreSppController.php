@@ -19,7 +19,7 @@ class StoreSppController extends Controller
      */
     public function index()
     {
-        $years = Year::all()->pluck('year','year');
+        $year = Year::all()->pluck('year','year');
 
         $months = Month::all()->pluck('month','month');
 
