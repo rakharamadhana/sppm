@@ -26,40 +26,49 @@ class CalculateController extends Controller
         $value = $request->input('value');
 
         $result['iwb'] = $this->countIwb($value);
-        $result['iwpersonal'] = $this->countIwpersonal($value);;
+        $result['iwpersonal'] = $this->countIwpersonal($value);
         $result['danataawun'] = $this->countDanaTaawun($value);
+        $result['ibk'] = $this->countIuranBulananKompetisi($value);
         $result['zakatprofesi'] = $this->countZakatProfesi($value);
-        $result['total'] = $this->sumTotal($result['iwb'],$result['iwpersonal'],$result['danataawun'],$result['zakatprofesi']);
+        $result['total'] = $this->sumTotal($result['iwb'],$result['iwpersonal'],$result['danataawun'],$result['ibk'],$result['zakatprofesi']);
 
         return view('frontend.calculator.calculator', ['value'=>$value, 'result' => $result]);
     }
 
-    public function countIwb(float $amount) {
-        if($amount>3000000){
+    public function countIwb(float $amount) { #IuranBulananKegiatan
+        if($amount >= 3000000){
             return $amount * 0.015;
         }else{
             return 15000;
         }
     }
 
-    public function countIwpersonal(float $amount) {
-        if($amount>3000000){
+    public function countIwpersonal(float $amount) { #IuranBulananPembinaan
+        if($amount >= 3000000){
             return $amount * 0.02;
         }else{
             return 0;
         }
     }
 
-    public function countDanaTaawun(float $amount) {
-        if($amount>3000000){
+    public function countDanaTaawun(float $amount) { #IuranBulananSosial
+        if($amount >= 3000000){
             return $amount * 0.005; //
         }else{
             return 0;
         }
     }
 
-    public function countZakatProfesi(float $amount) {
-        if($amount>=$this->nishab){
+    public function countIuranBulananKompetisi (float $amount) { #IuranBulananKompetisi
+        if($amount >= 3000000){
+            return $amount * 0.005; //
+        }else{
+            return 0;
+        }
+    }
+
+    public function countZakatProfesi(float $amount) { #Zakat Profesi (Zapro)
+        if($amount >= $this->nishab){
             return $amount * 0.025;
         }else{
             return 0;
@@ -67,8 +76,8 @@ class CalculateController extends Controller
 
     }
 
-    private function sumTotal(float $a, float $b, float $c, float $d)
+    private function sumTotal(float $a, float $b, float $c, float $d, float $e)
     {
-        return $a + $b + $c + $d;
+        return $a + $b + $c + $d + $e;
     }
 }

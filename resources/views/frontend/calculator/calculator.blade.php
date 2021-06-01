@@ -48,20 +48,24 @@
                             <tbody>
                             <h3>Total Penghasilan: Rp. {{ number_format($value ?? '0') }}</h3>
                             <tr>
-                                <th>IWB & IWDI</th>
+                                <th>Iuran Bulanan Pembinaan (IBP)</th>
+                                <td>Rp. {{ number_format($result['iwpersonal'] ?? '0') }}</td>
+                            </tr>
+                            <tr>
+                                <th>Iuran Bulanan Kegiatan (IBK)</th>
                                 <td>Rp. {{ number_format($result['iwb'] ?? '0') }}</td>
 
                             </tr>
                             <tr>
-                                <th>IW Personal</th>
-                                <td>Rp. {{ number_format($result['iwpersonal'] ?? '0') }}</td>
-                            </tr>
-                            <tr>
-                                <th>Dana Ta'awun</th>
+                                <th>Iuran Bulanan Sosial (IBS)</th>
                                 <td>Rp. {{ number_format($result['danataawun'] ?? '0') }}</td>
                             </tr>
                             <tr>
-                                <th>Zakat Profesi</th>
+                                <th>Iuran Bulanan Kompetisi (IBKs)</th>
+                                <td>Rp. {{ number_format($result['ibk'] ?? '0') }}</td>
+                            </tr>
+                            <tr>
+                                <th>Zakat Profesi (Zapro)</th>
                                 <td>Rp. {{ number_format($result['zakatprofesi'] ?? '0') }}</td>
                             </tr>
                             <tr class="table-success">
